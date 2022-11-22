@@ -1,0 +1,16 @@
+.media {
+	height: 15vh;
+	padding-top: 56.25%;
+	margin-top: 30;
+}
+.name {
+	font-weight: bold !important;
+}
+.desc {
+	font-size: 0.8rem;
+}
+.content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
