@@ -20,13 +20,16 @@ import Categories from '../fifa_categories/Categories';
 import Modes from '../../Fifa_Modes';
 const Fifa = () => {
 	const [team, setTeam] = useState('');
+	const [modes, setModes] = useState(null);
+	const parentref = (mode_refs) => {
+		setModes(mode_refs);
+	};
 
 	return (
 		<>
 			<Stack
 				height="100%"
 				style={{
-					marginTop: '-1rem 1important',
 					background: 'wheat',
 					display: 'flex',
 					flexDirection: 'column',
@@ -34,12 +37,17 @@ const Fifa = () => {
 			>
 				<Box sx={{ flex: 1 }}>
 					{' '}
-					<Categories />
+					<Categories modes={modes} />
 				</Box>
 				<Box
-					sx={{ flex: 9, background: 'green', position: 'relative' }}
+					sx={{
+						flex: 9,
+						background: 'white',
+						position: 'relative',
+						minHeight: '70vh',
+					}}
 				>
-					<Modes />
+					<Modes parentref={parentref} />
 				</Box>
 			</Stack>
 		</>

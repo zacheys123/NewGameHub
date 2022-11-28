@@ -11,28 +11,32 @@ import {
 	IconButton,
 	MenuItem,
 } from '@mui/material';
+import {
+	handlequick,
+	handletourn,
+	handleprac,
+	handlebestof,
+	handlecareer,
+} from './modesreducer';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import { useGameContext } from '../../../../context/context_/GameContext';
-const Categories = () => {
+import '../../../../css/Category.css';
+const Categories = ({ modes }) => {
 	const {
-		modes_state: {
-			mode_choice,
-			allteams,
-			modes: {
-				quickref,
-				tournament,
-				practice,
-				best_of,
-				career,
-				online,
-				home_away,
-			},
-		},
+		modes_state: { mode_choice, allteams },
 		setMode,
 	} = useGameContext();
 	const [category, setCateg] = useState('');
 	const [active, setActive] = useState(false);
 
+	useEffect(() => {
+		modes?.quickref?.current?.classList?.add('remove-active');
+		modes?.tournref?.current?.classList?.add('remove-active');
+		modes?.pracref?.current?.classList?.add('remove-active');
+		modes?.bestof?.current?.classList?.add('remove-active');
+		modes?.careerref?.current?.classList?.add('remove-active');
+		modes?.quickref?.current?.classList?.add('remove-active');
+	});
 	return (
 		<div className="category">
 			{allteams && (
@@ -49,63 +53,42 @@ const Categories = () => {
 			)}
 
 			<Button
-				onClick={() =>
-					setMode({
-						type: 'QUICK',
-						payload: { mode_choice },
-					})((quickref.current.style.display = 'block'))
-				}
+				onClick={() => {
+					handlequick(modes);
+				}}
 				variant="outlined"
 				className="category__control"
 			>
 				Quick Match
 			</Button>
 			<Button
-				onClick={() =>
-					setMode({
-						type: 'TOURNAMENTS',
-						payload: { tournament, mode_choice },
-					})
-				}
+				onClick={() => handletourn(modes)}
 				variant="outlined"
 				className="category__control"
 			>
 				Tournament
 			</Button>
 			<Button
-				onClick={() => ''}
+				onClick={() => handlebestof(modes)}
 				variant="outlined"
 				className="category__control"
 			>
 				Best of Series
 			</Button>
 			<Button
-				onClick={() => ''}
+				onClick={() => handlecareer(modes)}
 				variant="outlined"
 				className="category__control"
 			>
 				Career Mode
 			</Button>
+
 			<Button
-				onClick={() => ''}
-				variant="outlined"
-				className="category__control"
-			>
-				Online Friendly
-			</Button>
-			<Button
-				onClick={() => ''}
+				onClick={() => handleprac(modes)}
 				variant="outlined"
 				className="category__control"
 			>
 				Practice Arena
-			</Button>
-			<Button
-				onClick={() => ''}
-				variant="outlined"
-				className="category__control"
-			>
-				Home And Away
 			</Button>
 		</div>
 	);

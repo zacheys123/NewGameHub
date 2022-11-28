@@ -21,7 +21,9 @@ const Quick_Match = () => {
 	} = useGameContext();
 
 	const [loader, setLoading] = useState(false);
-	const [temp_data, setTemp] = useState(null);
+	const [temp_data, setTemp] = useState(
+		JSON.parse(window.localStorage.getItem('rec_games')),
+	);
 	const [sample_game_data, setSample] = useState({
 		player1_team: 'CT1',
 		player2_team: 'T2',
@@ -72,10 +74,10 @@ const Quick_Match = () => {
 				);
 				window.localStorage.setItem(
 					'rec_games',
-					JSON.stringify(rec_match),
+					JSON.stringify(game_data),
 				);
-				setTemp([...rec_match, rec_match]);
 				console.log(temp_data);
+				setTemp(rec_match);
 				setLoading(false);
 			}, 1000);
 			// window.localStorage.removeItem('games');
@@ -253,7 +255,7 @@ const Quick_Match = () => {
 					</Box>
 					<Stack
 						style={{
-							marginTop: '2rem',
+							margin: '2rem 0 2rem 0',
 							width: '100%',
 							display: 'flex',
 							justifyContent: 'center',

@@ -44,7 +44,6 @@ const Game__Data = () => {
 					</motion.div>
 				)}
 			</>
-			) : (
 		</>
 	);
 };

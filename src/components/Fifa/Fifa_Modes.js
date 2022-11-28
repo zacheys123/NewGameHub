@@ -1,5 +1,10 @@
 import { Stack, Box, Button } from '@mui/material';
-import React, { useCallback, useState } from 'react';
+import React, {
+	useCallback,
+	useState,
+	useRef,
+	useEffect,
+} from 'react';
 import Categories from './game_data/fifa_categories/Categories';
 import {
 	Quick_Match,
@@ -16,7 +21,7 @@ import { motion } from 'framer-motion';
 
 import { useGameContext } from '../../context/context_/GameContext';
 import Teams from './Teams';
-const Modes = () => {
+const Modes = (props) => {
 	const {
 		modes_state: {
 			modes: {
@@ -51,17 +56,32 @@ const Modes = () => {
 		},
 		[p_data],
 	);
+	const quickref = useRef();
+	const tournref = useRef();
+	const pracref = useRef();
+	const bestof = useRef();
+	const careerref = useRef();
 
+	const player_Mode = {
+		quickref,
+		tournref,
+		pracref,
+		bestof,
+		careerref,
+	};
+	useEffect(() => {
+		props.parentref(player_Mode);
+	}, []);
 	return (
 		<Stack
 			direction="row"
 			justifyContent="center"
-			sx={{ marginTop: '2rem' }}
+			sx={{ marginTop: '1rem' }}
 		>
 			<Box className="modes__right">
-				<div style={{ display: '' }}>
+				<div ref={quickref}>
 					<motion.div
-						className="fifa"
+						className="quick"
 						initial={{ y: '-300px' }}
 						animate={{ y: 0, transition: { duration: 0.6 } }}
 						exit={{ y: '-300px', transition: { duration: 0.6 } }}
@@ -69,9 +89,9 @@ const Modes = () => {
 						<Quick_Match />
 					</motion.div>
 				</div>
-				<div style={{ display: 'none', height: '100%' }}>
+				<div ref={tournref}>
 					<motion.div
-						className="God_of_war"
+						className="tournament"
 						initial={{ y: '-300px' }}
 						animate={{ y: 0, transition: { duration: 0.6 } }}
 						exit={{ y: '-300px', transition: { duration: 0.6 } }}
@@ -79,9 +99,9 @@ const Modes = () => {
 						<Tournaments />
 					</motion.div>
 				</div>
-				<div style={{ display: 'none' }}>
+				<div ref={pracref}>
 					<motion.div
-						className="Grand_theft"
+						className="practice"
 						initial={{ y: '-300px' }}
 						animate={{ y: 0, transition: { duration: 0.6 } }}
 						exit={{ y: '-300px', transition: { duration: 0.6 } }}
@@ -89,9 +109,9 @@ const Modes = () => {
 						<Practice />
 					</motion.div>
 				</div>
-				<div style={{ display: 'none' }}>
+				<div ref={bestof}>
 					<motion.div
-						className="Grand_theft"
+						className="bestof"
 						initial={{ y: '-300px' }}
 						animate={{ y: 0, transition: { duration: 0.6 } }}
 						exit={{ y: '-300px', transition: { duration: 0.6 } }}
@@ -99,35 +119,14 @@ const Modes = () => {
 						<Best_of />
 					</motion.div>
 				</div>
-				<div style={{ display: 'none' }}>
+				<div ref={careerref}>
 					<motion.div
-						className="Grand_theft"
+						className="career"
 						initial={{ y: '-300px' }}
 						animate={{ y: 0, transition: { duration: 0.6 } }}
 						exit={{ y: '-300px', transition: { duration: 0.6 } }}
 					>
 						<Career />
-					</motion.div>
-				</div>
-				<div style={{ display: 'none' }}>
-					<motion.div
-						className="Grand_theft"
-						Career
-						initial={{ y: '-300px' }}
-						animate={{ y: 0, transition: { duration: 0.6 } }}
-						exit={{ y: '-300px', transition: { duration: 0.6 } }}
-					>
-						<Online />
-					</motion.div>
-				</div>
-				<div style={{ display: 'none' }}>
-					<motion.div
-						className="Grand_theft"
-						initial={{ y: '-300px' }}
-						animate={{ y: 0, transition: { duration: 0.6 } }}
-						exit={{ y: '-300px', transition: { duration: 0.6 } }}
-					>
-						<Home_Away />
 					</motion.div>
 				</div>
 			</Box>

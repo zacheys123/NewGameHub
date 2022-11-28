@@ -8,7 +8,7 @@
 }
 .maingames__container {
 	flex: 9;
-	margin-top: -1rem;
+	margin-top: 1rem;
 	position: relative;
 }
 .maingame__header {
@@ -31,22 +31,45 @@
 	pointer-events: none;
 	opacity: 0.9;
 }
+.active {
+	display: block;
+}
+.remove-active {
+	display: none;
+}
+
 /* games */
-.fifa {
+.quick {
 	position: absolute;
 	width: 100%;
 	background: transparent !important;
 	height: 100%;
 }
-.God_of_war {
+.tournament {
 	background: yellow !important;
 	position: absolute;
+
 	width: 100%;
 	height: 100%;
 }
-.Grand_theft {
+.practice {
 	background: green !important;
 	position: absolute;
+
+	width: 100%;
+	height: 100%;
+}
+.bestof {
+	background: green !important;
+	position: absolute;
+
+	width: 100%;
+	height: 100%;
+}
+.career {
+	background: green !important;
+	position: absolute;
+
 	width: 100%;
 	height: 100%;
 }
@@ -57,10 +80,7 @@
 	padding: 1rem;
 	position: relative;
 }
-.modes__left {
-	margin-right: 1rem;
-	flex: 2;
-}
+
 .player1 {
 	float: right;
 	flex: 5;
@@ -92,7 +112,7 @@
 }
 .preview {
 	flex: 3;
-	height: 70vh;
+	height: 65vh;
 	position: relative;
 	max-width: 90%;
 	overflow-y: scroll;
